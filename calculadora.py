@@ -23,8 +23,8 @@ elif operacao == '/':
     print(n1 / n2)
 
 elif operacao == '%':
-    print(n1 / 100,'%')
-    print(n2 / 100,'%')
+    pctgm = n1 * n2
+    print(pctgm / 100)
 
 else:
     print('Operação inválida')
