@@ -42,7 +42,9 @@ def cad_prod(cad_prod):
 
 
 def pesqfis(pesqfis):
-         return print(pd.read_csv('cadastrofisico.csv', sep =';', header=None))
+        df= pd.read_csv('cadastrofisico.csv', sep=';', header=None)
+        c= df.rename(columns={'0':'A','1':'b'})
+        return print(c)
 
 
 def pesqjur(pesqjur):
@@ -50,24 +52,26 @@ def pesqjur(pesqjur):
 
 
 def pesqprod(pesqprod):
-        return print(pd.read_csv('cadastroproduto.csv', sep=' ', header=None))
+        df = pd.read_csv('cadastroproduto.csv', sep=';', header=None)
+        c = df.rename(columns={0:'Nome produto', 1:'Código', 2:'Quantidade', 3:'Preço'})
+        return print(c)
 
 
 
 
+while True:
+        print(' ***** PyCads alpha *****\n\n '
+              
+                        'Selecione a opção desejada:\n'
+                        '1- Cadastro de pessoa física\n'
+                        '2- Cadastro de pessoa jurídica\n'
+                        '3- Cadastro de produto\n'
+                        '4- Busca pessoa física\n'
+                        '5- Busca pessoa jurídica\n'
+                        '6- Busca produto\n'
+                        '0- Sair\n')
 
-menu = input('Selecione a opção desejada:\n'
-             '1- Cadastro de pessoa física\n'
-             '2- Cadastro de pessoa jurídica\n'
-             '3- Cadastro de produto\n'
-             '4- Busca pessoa física\n'
-             '5- Busca pessoa jurídica\n'
-             '6- Busca produto\n'
-             '0- Sair\n'
-             'Opção:')
-
-while menu > '0':
-
+        menu = input('Opção:')
         if menu == '1':
                 nome = input('Nome e sobrenome: ')
                 endereço = input('Endereço: ')
@@ -80,11 +84,13 @@ while menu > '0':
                 email = input('Email:')
                 cpf = input('CPF: ')
                 cad_fis(cad_fis)
-                s= input('Deseja cadastrar novamente? (digite S ou N para menu):')
-                if s == 'S':
+                s = input('Voltar ao menu principal? (digite S ou N para sair):')
+                if s == 'S' or 's':
                         continue
                 else:
                         break
+
+
 
 
 
@@ -100,11 +106,11 @@ while menu > '0':
                 email = input('Email: ')
                 cnpj = input('CNPJ: ')
                 cad_jur(cad_jur)
-                s = input('Deseja cadastrar novamente? (digite S ou N para menu):')
-                if s == 'S':
-                        continue
+                s = input('Voltar ao menu principal? (digite S ou N para sair):')
+                if s == 'S' or 's':
+                       continue
                 else:
-                        break
+                       break
 
 
         elif menu == '3':
@@ -113,25 +119,34 @@ while menu > '0':
                 quantidade = input('Quantidade:  ')
                 preco = input('Preço: ')
                 cad_prod(cad_prod)
-                s = input('Deseja cadastrar novamente? (digite S ou N para menu):')
-                if s == 'S':
-                        continue
+                s = input('Voltar ao menu principal? (digite S ou N para sair):')
+                if s == 'S' or 's':
+                      continue
                 else:
-                        break
+                       break
 
 
 
         elif menu == '4':
-                    pesqfis(pesqfis)
-                    break
+                pesqfis(pesqfis)
+                break
 
         elif menu == '5':
                 pesqjur(pesqjur)
                 break
 
         elif menu == '6':
-             pesqprod(pesqprod)
-             break
+                pesqprod(pesqprod)
+                break
+
+        elif menu == '0':
+                print('*****Saindo*****')
+                break
+
+
+
+
+
 
 
 
