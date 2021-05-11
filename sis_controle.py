@@ -2,13 +2,26 @@ import os
 import pandas as pd
 
 
+def test():
+        test = { 'Nome: ' + input('nome:') + ' ' + 'sobrenome:  ' + input('sobrenome: ')}
+        arquivo = open('test.csv', 'a')
+        arquivo.writelines(test)
+        arquivo.close()
+        return print(test)
+
+
+
+
+
 
 def cad_fis(cad_fis):
-        cad_fis = nome, endereço, bairro, numero, cidade, estado, complemento, telefone, email, cpf
+        cad_fis = {'Nome: ' + input('Nome: ') + ' ' + 'Sobrenome: ' + input('Sobrenome: ') + ', ' +
+                   'Endereço: ' + input('Endereço: ') +  ', ' + 'Número: ' + input('Número: ') + ', ' +'Bairro: ' + input('Bairro: ')
+                   + 'Cidade: ' + input('Cidade: ') + ', ' + 'Estado: ' + input('Estado: ') + ', ' + 'Telefone: ' + input('Telefone: ')
+                   + ', ' + 'Email: ' + input('Email: ') + ', ' + 'CPF: ' + input('CPF: ')
+                   }
         arquivo = open('cadastrofisico.csv', 'a')
-        dados = list()
-        dados.append(cad_fis)
-        arquivo.writelines(str(dados))
+        arquivo.writelines(cad_fis)
         arquivo.writelines('\n')
         arquivo.close()
         return print('Dados cadastrados: ', cad_fis)
@@ -43,8 +56,8 @@ def cad_prod(cad_prod):
 
 def pesqfis(pesqfis):
         df= pd.read_csv('cadastrofisico.csv', sep=';', header=None)
-        c= df.rename(columns={'0':'A','1':'b'})
-        return print(c)
+        #c= df.rename(columns={'0':'A','1':'b'})
+        return print(df)
 
 
 def pesqjur(pesqjur):
@@ -73,21 +86,13 @@ while True:
 
         menu = input('Opção:')
         if menu == '1':
-                nome = input('Nome e sobrenome: ')
-                endereço = input('Endereço: ')
-                bairro = input('Bairro: ')
-                numero = int(input('Número: '))
-                cidade = input('Cidade: ')
-                estado = input('Estado: ')
-                complemento = input('Complemento: ')
-                telefone = input('Telefone: ')
-                email = input('Email:')
-                cpf = input('CPF: ')
+
                 cad_fis(cad_fis)
                 s = input('Voltar ao menu principal? (digite S ou N para sair):')
                 if s == 'S' or 's':
                         continue
                 else:
+                        s == 'N' or 'n'
                         break
 
 
@@ -145,7 +150,9 @@ while True:
 
 
 
-
+        elif menu == '7':
+                test()
+                break
 
 
 
