@@ -1,0 +1,48 @@
+#Doenças do grão da soja
+#autor: Fernando Schmitt
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.utils import np_utils
+import tensorflow as tf
+import numpy as np
+
+#Carregando o conjunto de dados soybean.csv
+dados = pd.read_csv('soybean.csv', sep=",")
+dados
+
+
+#criação das variáveis X e y
+X = dados.iloc[:, 0:35].values
+y = dados.iloc[:, 35].values
+
+encoder = LabelEncoder()
+
+for x in range(35):
+    X[:, x] = encoder.fit_transform(X[:, x])
+
+print(X)
+
+#divisão dos dados para treinamento e teste
+X_treino,x_teste,Y_treino,y_teste = train_test_split(X, y, test_size = 0.3, random_state = 0)
+print(len(X_treino), len(x_teste), len(Y_treino), len(y_teste ))
+
+#X_treino = tf.convert_to_tensor(x, dtype=tf.int64) 
+
+
+#Criação da rede neural em ordem de camadas
+modelo = Sequential()
+modelo.add(Dense(units = 3, input_dim = 35))
+modelo.add(Dense(units = 2))
+modelo.add(Dense(units = 1, activation = 'softmax'))
+modelo.summary()
+
+#Configurando e treinando a rede neural
+modelo.compile(optimizer = 'adam', loss = 'categorical cross entropy', metrics = ['accuracy'])
+
+modelo.fit(X_treino, Y_treino, epochs = 1000, validation_data = [x_teste, y_teste])
+
